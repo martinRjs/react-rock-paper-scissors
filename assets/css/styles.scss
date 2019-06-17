@@ -1,3 +1,116 @@
 $rock-color: #63424B;
 $paper-color: #36504B;
 $scissors-color: #535353;
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Noto Sans HK', sans-serif;
+}
+
+.app {
+  width: 800px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap:20px;
+  justify-items: stretch;
+}
+
+.app h1 {
+ grid-column: 1 / -1;
+ justify-self: center;
+}
+
+.options{
+  grid-column: 1 / -1;
+  grid-row: 2 / 3;
+  display:grid;
+  grid-gap: 15px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+img {
+  width: 100%;
+  border-radius: 10%;
+  padding: 10px;
+  justify-self: center;
+  display: inline-block;
+
+  &.rock{
+    border: 4px solid $rock-color;
+  }
+
+  &.paper{
+    border: 4px solid $paper-color;
+  }
+
+  &.scissors{
+    border: 4px solid $scissors-color;
+  }
+}
+.rock {
+  color: $rock-color;
+}
+
+.paper {
+  color: $paper-color;
+}
+
+.scissors {
+  color: $scissors-color;
+}
+
+.app .board {
+  grid-column: 1 / -1;
+  grid-row: 3 / 4;
+  background-color: #ebf3f5;
+  text-align: center;
+  padding: 20px;
+  grid-gap: 15px;
+  font-size: 2em;
+  font-weight: 400;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+
+  div {
+    display: inline-block;
+    text-align: center;
+
+    &:first-child {
+      justify-self: end;
+    }
+
+    &:last-child {
+      justify-self: start;
+    }
+  }
+  
+  .points {
+    font-size: 4em;
+  }
+}
+
+.mini{
+  width: 90%;
+}
+.hr {
+  align-self: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+.hr-strong {
+  border-bottom: 5px solid black;
+  color:#ebf3f5;
+}
+
+.options img:hover {
+  border: 5px solid #3498db;
+  cursor: pointer;
+}
