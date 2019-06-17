@@ -44,10 +44,7 @@ class App extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.previousMatches.length === nextState.previousMatches.length) {
-      return false;
-    }
-    return true;
+    return this.state.previousMatches.length === nextState.previousMatches.length ? false : true;
   }
 
   render() {
