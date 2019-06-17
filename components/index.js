@@ -44,7 +44,6 @@ class App extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    debugger;
     if (this.state.previousMatches.length === nextState.previousMatches.length) {
       return false;
     }
