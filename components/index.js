@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import CSS from '../assets/css/styles.scss';
 import MatchCard from './MatchCard';
 
+//intersection shows the result, order is rock = 0, paper = 1, scissors = 2,
+//t = tie, w = win, l = lose 
 const results = [
   ['t', 'l', 'w'],
   ['w', 't', 'l'],
@@ -17,18 +19,14 @@ class App extends Component {
   }
 
   handleSelectOption = (e) => {
-    //intersection shows the result, order is rock = 0, paper = 1, scissors = 2,
-    //t = tie, w = win, l = lose 
-    const options = ['rock', 'paper', 'scissors'];
-
     const userInput = e.target.getAttribute('class') === 'rock' ? 0 : e.target.getAttribute('class') === 'paper' ? 1 : 2;
-    const cpuInput = Math.floor(Math.random() * (3));
-    const result = results[userInput][cpuInput];
-
-    const won = result === 'w' ? true : false;
-    const draw = result === 't' ? true : false;
+    const cpuInput = Math.floor(Math.random() * 3);
 
     this.setState((prevState) => {
+      const result = results[userInput][cpuInput];
+      const won = result === 'w' ? true : false;
+      const draw = result === 't' ? true : false;
+
       if (!draw) {
         return {
           human: won ? prevState.human + 1 : prevState.human,
@@ -45,8 +43,17 @@ class App extends Component {
     return this.state.previousMatches.map((match, index) => <MatchCard cpuSelection={match.cpuSelection} humanSelection={match.humanSelection} key={index} />);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    debugger;
+    if (this.state.previousMatches.length === nextState.previousMatches.length) {
+      return false;
+    }
+    return true;
+  }
+
   render() {
     return (
+      //I know this can be refactor into multiple components, but is it necessary ?? when do we stop!!!!!???? :o 
       <div className="app">
         <h1>
           <span className="rock">&nbsp;Rock,</span>
